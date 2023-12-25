@@ -42,7 +42,7 @@ const Main = () => {
 
     try {
       // Make an HTTP request to upload the file
-      const response = await axios.post('http://localhost:3001/upload', formData, {
+      const response = await axios.post('https://thai-id-ocr-backend.onrender.com/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -115,7 +115,7 @@ const Main = () => {
 
     try {
       // Make an HTTP request to update the entry in the database
-      const response = await axios.put(`http://localhost:3001/idcards/${id}`, updatedEntry);
+      const response = await axios.put(`https://thai-id-ocr-backend.onrender.com/idcards/${id}`, updatedEntry);
 
       // Check if the update was successful
       if (response.status === 200) {
@@ -136,7 +136,7 @@ const Main = () => {
     const fetchIdCards = async () => {
       try {
         // Make an HTTP request to get ID cards
-        const response = await axios.get('http://localhost:3001/idcards');
+        const response = await axios.get('https://thai-id-ocr-backend.onrender.com/idcards');
         setIdCardList(response.data);
       } catch (error) {
         console.error('Error fetching ID cards:', error);
@@ -156,7 +156,7 @@ const Main = () => {
     console.log(updatedEntry._id);
     try {
       // Make an HTTP request to delete the entry from the database
-      await axios.delete(`http://localhost:3001/idcards/${id}`);
+      await axios.delete(`https://thai-id-ocr-backend.onrender.com/${id}`);
 
       // Update the local state to reflect the changes
       setIdCardList((prevIdCardList) => prevIdCardList.filter((entry) => entry._id !== id));
