@@ -14,6 +14,7 @@ const Main = () => {
   const [deletePopup, setDeletePopup] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [showErrorPopup, setShowErrorPopup] = useState(false);
+  const [filteredData, setFilteredData] = useState();
 
   // Event handler for file input change
   const handleFileChange = (event) => {
@@ -79,27 +80,30 @@ const Main = () => {
   // Event handler for search input with Enter key
   const handleSearchWithEnter = (event) => {
     if (event.key === 'Enter') {
+      console.log(searchTerm)
       // Filter data based on search input
-      const searchInput = searchTerm;
+      const searchInput = searchTerm 
+      console.log(searchTerm)
       const tempFilteredData = idCardList.filter((entry) => {
         return Object.values(entry).some((value) =>
           value.toString().toLowerCase().includes(searchInput.toLowerCase())
         );
       });
-      setIdCardList(tempFilteredData);
+      setFilteredData(tempFilteredData);
     }
   };
 
   // Event handler for search button click
   const handleSearchWithButton = () => {
     // Filter data based on search input
-    const searchInput = searchTerm;
-    const tempFilteredData = idCardList.filter((entry) => {
-      return Object.values(entry).some((value) =>
-        value.toString().toLowerCase().includes(searchInput.toLowerCase())
-      );
-    });
-    setIdCardList(tempFilteredData);
+    const searchInput = searchTerm 
+      console.log(searchTerm)
+      const tempFilteredData = idCardList.filter((entry) => {
+        return Object.values(entry).some((value) =>
+          value.toString().toLowerCase().includes(searchInput.toLowerCase())
+        );
+      });
+      setFilteredData(tempFilteredData);
   };
 
   // Event handler for editing a row
@@ -138,6 +142,7 @@ const Main = () => {
         // Make an HTTP request to get ID cards
         const response = await axios.get('https://thai-id-ocr-backend.onrender.com/idcards');
         setIdCardList(response.data);
+        setFilteredData(response.data);
       } catch (error) {
         console.error('Error fetching ID cards:', error);
       }
@@ -303,7 +308,7 @@ const Main = () => {
                 </tr>
               </thead>
               <tbody>
-                {idCardList.map((idCard, index) => (
+                {filteredData?.map((idCard, index) => (
                   <tr
                     key={idCard._id}
                     className={`
