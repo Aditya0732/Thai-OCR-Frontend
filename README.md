@@ -1,3 +1,7 @@
+Deployment Link :-
+
+https://thai-id-ocr-2jg9.onrender.com/
+
 Overview :
 
 Thai ID Card OCR utilizes Optical Character Recognition (OCR) to extract information from images of Thai national ID cards. The application consists of a frontend developed in React.js and a backend built with Node.js, Express.js, and MongoDB. The Google Cloud Vision API is integrated for OCR functionality.
