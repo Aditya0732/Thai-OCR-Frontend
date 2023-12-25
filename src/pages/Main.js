@@ -156,7 +156,7 @@ const Main = () => {
     console.log(updatedEntry._id);
     try {
       // Make an HTTP request to delete the entry from the database
-      await axios.delete(`https://thai-id-ocr-backend.onrender.com/${id}`);
+      await axios.delete(`https://thai-id-ocr-backend.onrender.com/idcards/${id}`);
 
       // Update the local state to reflect the changes
       setIdCardList((prevIdCardList) => prevIdCardList.filter((entry) => entry._id !== id));
